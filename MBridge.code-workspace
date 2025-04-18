@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+    ],
+    "settings": {
+        "files.associations": {
+            "*.h": "cpp",
+            "*.cpp": "cpp",
+            "*.mm": "cpp",
+            "*.cmake": "cmake",
+            "CMakeLists.txt": "cmake"
+        },
+        "git.confirmSync": false,
+        "terminal.integrated.defaultProfile.windows": "PowerShell",
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.defaultProfile.osx": "zsh"
+    }
+}
