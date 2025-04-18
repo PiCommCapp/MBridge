@@ -1,0 +1,133 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake: Configure",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-B", "build",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+                "-DJUCE_DIR=~/JUCE"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "CMake: Build (Debug)",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build", "build",
+                "--config", "Debug"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": "CMake: Configure",
+            "problemMatcher": ["$gcc", "$msCompile"]
+        },
+        {
+            "label": "CMake: Build (Release)",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build", "build",
+                "--config", "Release"
+            ],
+            "group": "build",
+            "dependsOn": "CMake: Configure",
+            "problemMatcher": ["$gcc", "$msCompile"]
+        },
+        {
+            "label": "CMake: Clean",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build", "build",
+                "--target", "clean"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "CMake: Run Tests",
+            "type": "shell",
+            "command": "cd build && ctest -C Debug --output-on-failure",
+            "group": "test",
+            "dependsOn": "CMake: Build (Debug)",
+            "problemMatcher": []
+        },
+        {
+            "label": "Format All Files",
+            "type": "shell",
+            "command": "find",
+            "args": [
+                "Source",
+                "-name", "*.cpp",
+                "-o",
+                "-name", "*.h",
+                "-exec",
+                "clang-format", "-i", "{}", "\\;"
+            ],
+            "windows": {
+                "command": "Get-ChildItem",
+                "args": [
+                    "-Path", "Source",
+                    "-Recurse",
+                    "-Include", "*.cpp,*.h",
+                    "|",
+                    "ForEach-Object",
+                    "{",
+                    "clang-format", "-i", "$_",
+                    "}"
+                ]
+            },
+            "group": "none",
+            "problemMatcher": []
+        },
+        {
+            "label": "Create Build Directory",
+            "type": "shell",
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "build"
+            ],
+            "windows": {
+                "command": "if",
+                "args": [
+                    "not",
+                    "exist",
+                    "build",
+                    "mkdir",
+                    "build"
+                ]
+            },
+            "group": "none",
+            "problemMatcher": []
+        },
+        {
+            "label": "Copy compile_commands.json",
+            "type": "shell",
+            "command": "cp",
+            "args": [
+                "build/compile_commands.json",
+                "${workspaceFolder}/compile_commands.json"
+            ],
+            "windows": {
+                "command": "Copy-Item",
+                "args": [
+                    "build/compile_commands.json",
+                    "-Destination",
+                    "${workspaceFolder}/compile_commands.json"
+                ]
+            },
+            "dependsOn": "CMake: Configure",
+            "group": "none",
+            "problemMatcher": []
+        }
+    ]
+}

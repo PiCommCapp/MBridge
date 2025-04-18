@@ -53,15 +53,15 @@
   - [x] Setup window management
   - [x] Configure application properties
 
-- [ ] **Basic Audio Pipeline**
-  - [ ] Implement audio device detection
-  - [ ] Create basic audio callback structure
-  - [ ] Setup buffer processing framework
+- [x] **Basic Audio Pipeline**
+  - [x] Implement audio device detection
+  - [x] Create basic audio callback structure
+  - [x] Setup buffer processing framework
 
-- [ ] **Minimal UI Layout**
-  - [ ] Create main application window with basic layout
-  - [ ] Add placeholder components for meters and RTAs
-  - [ ] Implement basic UI styling
+- [x] **Minimal UI Layout**
+  - [x] Create main application window with basic layout
+  - [x] Add placeholder components for meters and RTAs
+  - [x] Implement basic UI styling
 
 #### Phase 2: Audio Pipeline
 - [ ] **Audio Device Management**
@@ -69,10 +69,19 @@
   - [ ] Implement device selection interface
   - [ ] Handle device connection/disconnection
 
+- [ ] **Audio Loopback Implementation**
+  - [ ] Research platform-specific loopback capabilities (WASAPI, virtual audio drivers, PulseAudio/JACK)
+  - [ ] Implement Windows loopback capture using WASAPI
+  - [ ] Implement macOS loopback using virtual audio routing or system APIs
+  - [ ] Implement Linux loopback using PulseAudio, JACK or PipeWire
+  - [ ] Create unified interface for loopback sources
+  - [ ] Add UI elements to distinguish between input and loopback sources
+
 - [ ] **Channel Selection System**
   - [ ] Create channel routing manager
   - [ ] Implement channel selection UI components
   - [ ] Connect channel routing to audio processing
+  - [ ] Enhance UI to clearly distinguish between input channels and output loopback channels
 
 - [ ] **Audio Processing Chain**
   - [ ] Design processing chain architecture
@@ -169,6 +178,37 @@
   - [ ] Create user manual
   - [ ] Document API for external integration
   - [ ] Add installation and configuration guides
+
+### 6. Testing Implementation
+- [ ] **Unit Testing Framework**
+  - [ ] Configure Catch2 for unit testing
+  - [ ] Create test utilities and helpers
+  - [ ] Implement test runner integration with CI
+
+- [ ] **Core Component Tests**
+  - [ ] Complete Logger class unit tests
+  - [ ] Add ApplicationProperties test coverage
+  - [ ] Implement MainComponent tests
+  - [ ] Add Core utility function tests
+
+- [ ] **Audio Pipeline Tests**
+  - [ ] Create mock audio device for testing
+  - [ ] Implement AudioEngine unit tests
+  - [ ] Test AudioCallback processing
+  - [ ] Implement ChannelRouter tests
+  - [ ] Verify buffer processing correctness
+
+- [ ] **Processing Tests**
+  - [ ] Implement VU meter algorithm tests
+  - [ ] Implement PPM meter algorithm tests
+  - [ ] Verify calculations against known references
+  - [ ] Test processing performance
+
+- [ ] **Integration Tests**
+  - [ ] Create audio processing pipeline integration tests
+  - [ ] Test audio processing with simulated input
+  - [ ] Verify end-to-end meter response
+  - [ ] Test RTA functionality with known signals
 
 ## Core Tasks (Original)
 

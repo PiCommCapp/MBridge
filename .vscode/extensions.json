@@ -1,0 +1,33 @@
+{
+    "recommendations": [
+        // C/C++ Extensions
+        "llvm-vs-code-extensions.vscode-clangd",  // Clangd language server from LLVM
+        "ccls-project.ccls",                      // CCLS language server (alternative)
+
+        // CMake Extensions
+        "twxs.cmake",                             // CMake syntax highlighting
+        "cheshirekow.cmake-format",               // CMake formatter
+
+        // Formatting/Code Quality
+        "xaver.clang-format",                     // Clang-Format integration
+        "streetsidesoftware.code-spell-checker",  // Spell checker
+        "editorconfig.editorconfig",              // EditorConfig support
+
+        // Git Extensions
+        "mhutchie.git-graph",                     // Git graph visualization
+        "eamodio.gitlens",                        // Git lens for code history
+
+        // Documentation
+        "cschlosser.doxdocgen",                   // Doxygen documentation generator
+        "yzhang.markdown-all-in-one",             // Markdown support
+
+        // JUCE related
+        "liam-oconnor.audiosprite",               // Audio file preview (useful for JUCE audio apps)
+        "slevesque.vscode-hexdump",               // Hex editor (non-MS alternative)
+
+        // General Productivity
+        "pkief.material-icon-theme",              // Better file icons
+        "shardulm94.trailing-spaces",             // Highlight trailing spaces
+        "aaron-bond.better-comments"              // Improved comments highlighting
+    ]
+}

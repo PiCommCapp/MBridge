@@ -1,0 +1,65 @@
+{
+    // C++ settings
+    "C_Cpp.default.cppStandard": "c++17",
+
+    // Clangd settings
+    "clangd.path": "clangd",
+    "clangd.arguments": [
+        "--background-index",
+        "--clang-tidy",
+        "--completion-style=detailed",
+        "--header-insertion=iwyu",
+        "--suggest-missing-includes",
+        "--compile-commands-dir=${workspaceFolder}/build"
+    ],
+
+    // CCLS settings (alternative to Clangd)
+    "ccls.launch.command": "ccls",
+    "ccls.cache.directory": "${workspaceFolder}/.ccls-cache",
+    "ccls.misc.compilationDatabaseDirectory": "${workspaceFolder}/build",
+
+    // CMake settings
+    "cmake.configureOnOpen": true,
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.installPrefix": "${workspaceFolder}/install",
+    "cmake.generator": "${default}",
+    "cmake.exportCompileCommandsFile": true,
+    "cmake.configureArgs": [
+        "-DJUCE_DIR=~/JUCE"
+    ],
+    "cmake.useCMakePresets": false,
+
+    // Editor settings
+    "editor.formatOnSave": true,
+    "editor.rulers": [100],
+    "editor.renderWhitespace": "boundary",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.eol": "\n",
+
+    // Clang Format settings
+    "editor.defaultFormatter": "xaver.clang-format",
+    "clang-format.style": "file",
+    "clang-format.fallbackStyle": "Mozilla",
+
+    // File associations
+    "files.associations": {
+        "*.h": "cpp",
+        "*.cpp": "cpp",
+        "*.mm": "cpp",
+        "*.cmake": "cmake",
+        "CMakeLists.txt": "cmake"
+    },
+
+    // Git settings
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+
+    // Terminal settings
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.defaultProfile.osx": "zsh"
+}

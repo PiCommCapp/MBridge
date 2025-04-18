@@ -36,10 +36,12 @@ Responsible for interfacing with audio hardware and managing audio data flow.
 - **AudioIODeviceCallback**: Handles audio data callbacks
 - **ChannelRouterManager**: Routes selected input channels to monitoring slots
 - **AudioBufferManager**: Manages thread-safe access to audio data
+- **LoopbackManager**: Manages audio loopback capabilities for monitoring output channels
 
 #### Dependencies:
 - JUCE Audio Basics, Audio Devices
 - System audio APIs (via JUCE abstraction)
+- Platform-specific loopback APIs (WASAPI loopback for Windows, virtual audio drivers for macOS, PulseAudio/JACK for Linux)
 
 ### 2. Processing Engine
 
@@ -66,7 +68,7 @@ Provides visual representation and user controls.
 - **MainComponent**: Primary application window and layout
 - **ChannelSelectorComponent**: Dropdown for channel selection
 - **MeterTypeSelector**: Control for switching meter types
-- **MeterComponent**: 
+- **MeterComponent**:
   - **VUMeterComponent**: Visual representation of VU meter
   - **PPMMeterComponent**: Visual representation of PPM meter
 - **RTAComponent**: Visualization of frequency spectrum
@@ -120,6 +122,7 @@ Enables external control of the application.
 - **Bit Depth**: Support for 16-bit, 24-bit, and 32-bit float
 - **Latency**: Target < 50ms from input to display
 - **CPU Usage**: Target < 10% on modern CPUs
+- **Audio Loopback**: Support for monitoring system output channels via platform-specific mechanisms
 
 ### Metering Standards
 
@@ -217,4 +220,4 @@ MCAM/
 
 This document serves as the architectural blueprint for the MCAM project and will be updated as the project evolves.
 
-Last Updated: 2023-07-25 
+Last Updated: 2023-07-25

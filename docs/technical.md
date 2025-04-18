@@ -35,6 +35,10 @@ This document serves as the authoritative source for technical decisions, implem
     - [Design](#design-3)
     - [Key Features](#key-features-3)
     - [Implementation Details](#implementation-details-4)
+  - [Audio Loopback Implementation](#audio-loopback-implementation)
+    - [Design](#design-4)
+    - [Key Features](#key-features-4)
+    - [Implementation Details](#implementation-details-5)
 
 ## Technology Stack
 
@@ -90,6 +94,7 @@ Thread synchronization is handled via lock-free data structures where possible, 
 | CMake Build System | Better cross-platform support than JUCE's Projucer | JUCE's Projucer, Premake | 2023-07-25 |
 | C++17 Standard | Balance of modern features and compiler support | C++14, C++20 | 2023-07-25 |
 | Lock-free Design | Essential for audio thread performance | Mutex-based synchronization | 2023-07-25 |
+| Platform-specific Audio Loopback | Each platform requires different approach for output monitoring | Universal virtual audio cable | 2023-07-26 |
 
 ## Dependencies
 
@@ -194,3 +199,20 @@ The user interface follows JUCE component patterns with careful management of wi
 - MainComponent is the primary content component
 - UI layout divided into sections for future components
 - Uses JUCE's LookAndFeel system for styling
+
+## Audio Loopback Implementation
+
+### Design
+The application implements platform-specific solutions for audio loopback functionality, allowing users to monitor computer output audio in addition to input sources.
+
+### Key Features
+- **Windows Implementation**: Uses WASAPI loopback capture for monitoring output devices
+- **macOS Implementation**: Supports virtual audio drivers (BlackHole or similar) for routing output to inputs
+- **Linux Implementation**: Leverages PulseAudio, JACK, or PipeWire loopback capabilities
+- **Seamless Integration**: Output devices appear alongside input devices in channel selection UI
+
+### Implementation Details
+- Extends JUCE's AudioDeviceManager with platform-specific loopback detection
+- Implements separate device types for inputs and loopback sources
+- Handles potential sample rate and buffer size differences between input and output devices
+- Provides clear labeling in UI to distinguish between input sources and loopback sources

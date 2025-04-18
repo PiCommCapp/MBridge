@@ -68,6 +68,17 @@ target_sources(MCAM
         Source/Core/MainComponent.cpp
         Source/Core/Logger.cpp
         Source/JuceHeader.h
+
+        # Audio Pipeline
+        Source/Audio/AudioCallback.cpp
+        Source/Audio/AudioEngine.cpp
+        Source/Audio/Devices/AudioDeviceManager.cpp
+        Source/Audio/Processing/BufferProcessor.cpp
+
+        # UI Components
+        Source/UI/Meters/MeterComponent.cpp
+        Source/UI/RTA/RTAComponent.cpp
+        Source/UI/MonitoringSlotComponent.cpp
         # Add other source files as they are created
 )
 

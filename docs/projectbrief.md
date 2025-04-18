@@ -10,7 +10,7 @@
     * Linux
 
 **4. Core Functionality:**
-    * **Audio Input:** Accept multi-channel audio input from standard system audio interfaces (e.g., devices exposed by Dante Virtual Soundcard, USB audio interfaces). The application should be capable of recognizing up to 32 input channels.
+    * **Audio Input:** Accept multi-channel audio input from standard system audio interfaces (e.g., devices exposed by Dante Virtual Soundcard, USB audio interfaces). The application should be capable of recognizing up to 32 input channels. Additionally, the application should support audio loopback functionality, allowing users to monitor the computer's audio outputs in addition to inputs.
     * **Channel Selection:** Allow the user to independently select one of the available input channels for each of the four monitoring slots via dropdown menus.
     * **Metering:** Display a selectable meter type (VU or PPM) for each of the four selected audio channels. Metering should adhere to standard ballistics for each type.
     * **Real-Time Analysis (RTA):** Display a Real-Time Analyzer (frequency spectrum) for each of the four selected audio channels, stacked vertically on the screen.
@@ -54,7 +54,7 @@
 **9. User Interface Details:**
 
 * **Main Window:** A single window containing the four monitoring slots arranged vertically or horizontally.
-* **Channel Selection:** For each of the four slots, a dropdown menu will list the available audio input channels (e.g., "Channel 1", "Channel 2", ..., "Channel 32").
+* **Channel Selection:** For each of the four slots, a dropdown menu will list the available audio input channels (e.g., "Channel 1", "Channel 2", ..., "Channel 32") and output loopback channels (e.g., "Output 1", "Output 2", etc.).
 * **Meter Type Selection:** For each of the four slots, a dropdown menu will allow the user to choose between "VU" and "PPM" meter types.
 * **Meter Display:** Clear and visually distinct representations of the selected meter type for each channel.
 * **RTA Display:** Stacked frequency spectrum graphs for each of the four selected channels, providing a real-time visual representation of the frequency content.

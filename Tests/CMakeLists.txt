@@ -10,11 +10,20 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(Catch2)
 
+# Create test directories
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Audio)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Processing)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Utilities)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Integration)
+
 # Create test executable
 add_executable(MCAMTests
     # Add test source files here
     TestMain.cpp
     Core/CoreTests.cpp
+    Audio/AudioTests.cpp
+    Processing/ProcessingTests.cpp
+    Integration/IntegrationTests.cpp
     # Include the Logger implementation for testing
     ${CMAKE_SOURCE_DIR}/Source/Core/Logger.cpp
     # Add more test files as they are created

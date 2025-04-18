@@ -212,7 +212,7 @@ _deps
 
 # IDE specific
 .vs/
-.vscode/
+# .vscode/
 *.swp
 *.swo
 *~
