@@ -3,9 +3,9 @@
 A cross-platform native application for monitoring up to four selectable audio channels with VU/PPM meters and Real-Time Analyzers (RTAs).
 
 ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
-![Build Status](https://img.shields.io/github/actions/workflow/status/yourusername/mcam/build.yml?branch=main)
-![Test Status](https://img.shields.io/github/actions/workflow/status/yourusername/mcam/test.yml?branch=main&label=tests)
-![Release](https://img.shields.io/github/v/release/yourusername/mcam)
+![Build Status](https://img.shields.io/github/actions/workflow/status/PiCommCapp/MBridge/build.yml?branch=main)
+![Test Status](https://img.shields.io/github/actions/workflow/status/PiCommCapp/MBridge/test.yml?branch=main&label=tests)
+![Release](https://img.shields.io/github/v/release/PiCommCapp/MBridge)
 
 ## Overview
 
@@ -64,8 +64,8 @@ See [Project Status](docs/status.md) for detailed progress information.
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/mcam.git
-cd mcam
+git clone https://github.com/PiCommCapp/MBridge.git
+cd MBridge
 
 # Create a build directory
 mkdir build
