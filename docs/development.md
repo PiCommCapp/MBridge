@@ -11,6 +11,23 @@ The MCAM project requires the following dependencies:
 - CMake 3.15 or newer
 - Git
 
+## Project-Specific Environment Setup
+
+### JUCE Framework Location
+For this project, JUCE is installed at `~/JUCE`. When configuring the build, you need to set the `JUCE_DIR` environment variable to point to this location.
+
+#### Setting JUCE_DIR on macOS/Linux
+```bash
+export JUCE_DIR=~/JUCE
+```
+
+#### Setting JUCE_DIR on Windows
+```cmd
+set JUCE_DIR=C:\path\to\JUCE
+```
+
+Or you can add it to your environment variables permanently through the System Properties dialog.
+
 ## Windows Setup
 
 ### 1. Install a C++ Compiler
@@ -148,10 +165,10 @@ sudo pacman -S gcc git cmake pkgconfig alsa-lib jack freetype2 libx11 libxcompos
   ```bash
   # Ubuntu/Debian
   sudo apt-get install jackd2 qjackctl
-  
+
   # Fedora
   sudo dnf install jack-audio-connection-kit qjackctl
-  
+
   # Arch Linux
   sudo pacman -S jack2 qjackctl
   ```
@@ -172,17 +189,17 @@ cd build
 
 #### Windows (Visual Studio)
 ```bash
-cmake -G "Visual Studio 16 2019" -A x64 -DJUCE_DIR=/path/to/JUCE ..
+cmake -G "Visual Studio 16 2019" -A x64 -DJUCE_DIR=~/JUCE ..
 ```
 
 #### Windows (MinGW)
 ```bash
-cmake -G "MinGW Makefiles" -DJUCE_DIR=/path/to/JUCE ..
+cmake -G "MinGW Makefiles" -DJUCE_DIR=~/JUCE ..
 ```
 
 #### macOS/Linux
 ```bash
-cmake -DJUCE_DIR=/path/to/JUCE ..
+cmake -DJUCE_DIR=~/JUCE ..
 ```
 
 ### 3. Build the Project
@@ -267,4 +284,4 @@ cmake --build . --target package
 
 ---
 
-Last Updated: 2023-07-25 
+Last Updated: 2023-07-25

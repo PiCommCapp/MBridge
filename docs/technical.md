@@ -9,6 +9,7 @@ This document serves as the authoritative source for technical decisions, implem
     - [Core Technologies](#core-technologies)
     - [Platform-Specific Technologies](#platform-specific-technologies)
   - [Implementation Details](#implementation-details)
+    - [JUCE Framework Location](#juce-framework-location)
     - [Audio Processing Pipeline](#audio-processing-pipeline)
     - [Threading Model](#threading-model)
     - [Memory Management](#memory-management)
@@ -17,6 +18,23 @@ This document serves as the authoritative source for technical decisions, implem
   - [Performance Optimizations](#performance-optimizations)
   - [Known Issues](#known-issues)
   - [Document History](#document-history)
+- [Technical Decisions and Implementation Details](#technical-decisions-and-implementation-details)
+  - [Logger System](#logger-system)
+    - [Design](#design)
+    - [Key Features](#key-features)
+    - [Implementation Details](#implementation-details-1)
+  - [Application Properties Management](#application-properties-management)
+    - [Design](#design-1)
+    - [Key Features](#key-features-1)
+    - [Implementation Details](#implementation-details-2)
+  - [Build System](#build-system)
+    - [Design](#design-2)
+    - [Key Features](#key-features-2)
+    - [Implementation Details](#implementation-details-3)
+  - [UI Management](#ui-management)
+    - [Design](#design-3)
+    - [Key Features](#key-features-3)
+    - [Implementation Details](#implementation-details-4)
 
 ## Technology Stack
 
@@ -32,6 +50,12 @@ This document serves as the authoritative source for technical decisions, implem
 - **Linux**: ALSA and JACK (via JUCE)
 
 ## Implementation Details
+
+### JUCE Framework Location
+The project uses JUCE Framework installed at `~/JUCE`. This location is referenced in the CMake configuration and needs to be accessible during the build process. If you need to modify this location, update the following:
+
+1. Set the `JUCE_DIR` environment variable to your JUCE installation path
+2. Update CMake configuration commands with the appropriate `-DJUCE_DIR` parameter
 
 ### Audio Processing Pipeline
 
@@ -98,4 +122,75 @@ Thread synchronization is handled via lock-free data structures where possible, 
 
 ---
 
-*This document will be updated as development progresses.* 
+*This document will be updated as development progresses.*
+
+# Technical Decisions and Implementation Details
+
+## Logger System
+
+### Design
+We've implemented a flexible and thread-safe logging system for the application. The logger is designed as a singleton to provide a consistent logging interface throughout the application.
+
+### Key Features
+- **Severity Levels**: Supports multiple logging levels (Debug, Info, Warning, Error, Critical)
+- **Thread Safety**: Uses JUCE's CriticalSection for thread-safe logging
+- **File & Console Output**: Logs to both the console and a file
+- **Automatic Directory Creation**: Creates the logs directory if it doesn't exist
+- **Timestamp**: Includes timestamps on all log entries
+
+### Implementation Details
+- Uses JUCE's `FileOutputStream` for log file writing
+- Configuration options allow setting minimum log level
+- Convenient macros (LOG_INFO, LOG_ERROR, etc.) simplify usage
+- Log rotation and size management will be added in future updates
+
+## Application Properties Management
+
+### Design
+We use JUCE's ApplicationProperties system to handle persistent application settings across launches. This provides a platform-independent way to store user preferences.
+
+### Key Features
+- **Window State Persistence**: Saves and restores window position and size
+- **Platform-Specific Storage**: Uses appropriate locations for settings on each platform
+- **XML Format**: Settings stored in easily readable XML format
+- **Automatic Saving**: Saves settings when application closes
+
+### Implementation Details
+- Settings file is stored in the user's application data directory
+- Default settings are applied if no settings file exists
+- Each component can have its own section in the properties file
+- Settings are only saved when changed to avoid unnecessary file writes
+
+## Build System
+
+### Design
+We've created a robust build system using CMake for cross-platform compatibility. A build script simplifies the process for developers.
+
+### Key Features
+- **Cross-Platform**: Works on Windows, macOS, and Linux
+- **Automatic JUCE Detection**: Build script automatically detects JUCE installation
+- **Test Integration**: Includes test framework configuration with Catch2
+- **Directory Setup**: Creates necessary directories like logs during build
+
+### Implementation Details
+- CMake minimum version 3.15 required for JUCE support
+- C++17 used for modern language features
+- Output directories organized for clarity
+- Platform-specific options handled automatically
+
+## UI Management
+
+### Design
+The user interface follows JUCE component patterns with careful management of window properties and layout.
+
+### Key Features
+- **Window Size/Position Memory**: Remembers window state between sessions
+- **Resizable Interface**: Allows user to resize the application window with constraints
+- **Component Organization**: Organized UI components for future expansion
+- **Consistent Styling**: Foundation for consistent application appearance
+
+### Implementation Details
+- Main window is a DocumentWindow with native title bar
+- MainComponent is the primary content component
+- UI layout divided into sections for future components
+- Uses JUCE's LookAndFeel system for styling
